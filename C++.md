@@ -2,6 +2,9 @@
 
 ## lambda expression
 
+1. `auto add = [](int a, int b){return a*b;};` 这里方括号是捕捉器，用来获取外界的变量。
+    方括号默认为复制捕捉，即不改变外界的变量；但如果使用引用的话，则会改变
+2. 使用[=],[&], 分别是复制捕获所有变量，引用捕获所有变量
 
 ## Set
 
@@ -45,14 +48,18 @@
 
 ## Map
 
+* Map is stored in order by Red Black Tree, so the time for each search is O(logN). If we want to implement hash map, we should use unordered_map instead, which has O(1) for each indexing.
+    * the operation of unordered_map is nearly the same with map.
 * modifiers
     * insert
+        * need to use make_pair() function
     * erase
     * swap
     * clear
     * emplace
 * operations
     * find
+        * it will return iterator end() if not find.
     * count
 
 ## Algorithm
@@ -85,5 +92,15 @@
         }
         ```
 
+## Stack
+
+* constructor
+    `stack<int> mystack;`
+* modifiers
+    * push
+    * pop
+    * empty
+    * size
+    * top: a reference to the top element
 
 
