@@ -62,6 +62,7 @@
         * it will return iterator end() if not find.
     * count
 
+
 ## Algorithm
 
 * sort
@@ -74,7 +75,6 @@
         ```
 
         
-
 ## Numeric
 
 * iota
@@ -104,3 +104,16 @@
     * top: a reference to the top element
 
 
+## Vector
+
+* data()
+    Data() function is to get the basic array
+    `int * arr = vector<int>.data();`
+* modifiers
+    * erase(iterator)
+
+
+## Deque
+
+* The difference between Deque and Vector is that deque is stored in discreted memory units, different from Vector (which is continuous memory).
+* It is double linked container and can push\pop at the start, not only the end.
