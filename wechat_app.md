@@ -49,7 +49,18 @@
 
 2. checkout
 	1. remove the changes made in working set
-	`git checkout -- filename (*)`
+		`git checkout -- filename (*)`
+	2. create branch
+		1. create a branch and point to it
+			`git checkout -b dev`
+			It is equal to 
+			```
+			git branch dev
+			git checkout dev
+			```
+		2. 
+
+
 
 ## Wechat App Doc
 
