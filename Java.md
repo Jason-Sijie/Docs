@@ -28,9 +28,14 @@
 1. **public static variable** can be init directly or by using `static{}` and **private static function()**
 2. All the static variables and `static{}` runs by order.
 
-## Integer
+## ArrayList
 
-1. Integer.toString()
+1. constructor
+    1. The arrayList is hard to initialize values by constructor, better add value one by one.
+2. modifiers
+    1. indexing:
+        It can not use [], but use arr.get(int index)
+    2. set(int index, E newValue)
 
 
 ## String
@@ -183,4 +188,82 @@
         1. region(int start, int end)
             set the limits of this matcher's region
         2. int regionStart(), int regionEnd()
+4. Symbols
+    1. \\1(\\2): means the content of group #1 or #2.
+    2. [0-9] == \\d
+    3. [^abc]: all the characters except a, b, and c.
 
+
+## Inherit
+
+1. SubClass constructor
+    1. It will automatically call the default constructor of superClass, if SubClass does not explicitly call it.
+2. interface
+    1. If **implements** interface, then it can **implements** multiple interfaces at the same time. 
+    2. But **extends** classes can only extends 1 class at one time.
+3. final
+    1. once the class/method/variable is declared as **final**, it can not been inheritted, overrided, and changed.
+        ```
+        final class 类名 {//类体}
+        修饰符(public/private/default/protected) final 返回值类型 方法名(){//方法体}
+        ```
+
+
+## Sort
+
+1. Arrays Sorting (int[] arr)
+    1. use java.util.Arrays object's function "sort"
+        ```
+        Arrays.sort(arr);
+        Arrays.sort(arr, int start, int end);
+        ```
+    2. implement own **comparator**
+        ```
+        Comparator cmp = new MyComparator();
+        Arrays.sort(arr, cmp)
+
+        class MyComparator implements Comparator<E>{
+            @Override
+            public int compare(E o1, E o2){
+                if(o1 < o2){
+                    return 1; 
+                }
+                else if(o1 > o2){
+                    return -1;  // must be opposite number
+                }
+                else{
+                    return 0;
+                }
+            }
+        }
+        ```
+
+2. Objects (like ArrayList and Vector) Sorting
+    1. use java.util.Collections object's function "sort"
+    2. it is the same with Arrays's function
+
+## Arrays
+
+1. Arrays.copyOfRange(Object[] src, int from, int to)
+    obtain the sub array from source
+2. 
+
+
+## List<>
+
+1. access element by get() not [].
+2. **All the objects in the List is a reference to an specific object**
+    ```
+    ArrayList<HashSet<Integer>> a = new ArrayList<>(), b = new ArrayList<>();
+    HashSet<Integer> tmp = new HashSet<>();
+    a.add(tmp);
+    b.add(tmp);
+
+    tmp.add(1);
+    tmp.add(2);
+    for(HashSet<Integer> ele:b)
+        for(int i:ele){
+            System.out.println(i);
+        }
+    ```
+    The output of a and b will both be "1 2".
