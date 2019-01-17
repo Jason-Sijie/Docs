@@ -34,6 +34,9 @@
 	yum install python36u-pip -y
 	```
 
+5. using pip3.6 install opencv-python
+	1. problem: error in loading cv2 module (missing libSM.so.6)
+        solution: `sudo yum install libXext libSM libXrender`
 
 ## Git Operation
 
