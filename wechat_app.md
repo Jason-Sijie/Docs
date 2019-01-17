@@ -41,12 +41,15 @@
 ## Git Operation
 
 1. git忽略本地更新，更新远程修改到本地
-```
-git fetch --all (将远程库中所有的数据复制到本地remote文件夹中)
-git reset --hard origin/master
-```
+	```
+	git fetch --all (将远程库中所有的数据复制到本地remote文件夹中)
+	git reset --hard origin/master
+	```
+	tips： git branch -a 可以查看当前所有的分支
 
-tips： git branch -a 可以查看当前所有的分支
+2. checkout
+	1. remove the changes made in working set
+	`git checkout -- filename (*)`
 
 ## Wechat App Doc
 
