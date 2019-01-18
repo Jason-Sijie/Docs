@@ -38,29 +38,6 @@
 	1. problem: error in loading cv2 module (missing libSM.so.6)
         solution: `sudo yum install libXext libSM libXrender`
 
-## Git Operation
-
-1. git忽略本地更新，更新远程修改到本地
-	```
-	git fetch --all (将远程库中所有的数据复制到本地remote文件夹中)
-	git reset --hard origin/master
-	```
-	tips： git branch -a 可以查看当前所有的分支
-
-2. checkout
-	1. remove the changes made in working set
-		`git checkout -- filename (*)`
-	2. create branch
-		1. create a branch and point to it
-			`git checkout -b dev`
-			It is equal to 
-			```
-			git branch dev
-			git checkout dev
-			```
-		2. 
-
-
 
 ## Wechat App Doc
 
@@ -71,6 +48,17 @@ request中的FILES来获取文件内容，必须要在html的form中加上这个
 2. wx.uploadfile
 上传的file用 request.FILES.get()函数来获取
 formdata用 request.POST.get()函数来获取
+
+
+## Django
+
+### URL
+1. path() function can pass multiple parameter to views
+	```
+	path('download/<str:file_name>', views.download)
+	def download(request, file_name)
+	```
+
 
 
 ## Aliyun
