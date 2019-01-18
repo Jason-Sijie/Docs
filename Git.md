@@ -26,4 +26,22 @@
 		3. then we can delete branch dev
 			`git branch -d dev`
 
-3. 
+3. stash
+	1. push all the changes on the current working set into a stack
+		`git stash`
+	2. `git stash list` show all the stash info
+	3. `git stash pop` return the top and remove it from stack
+		`git stash apply` recovery
+		`git stash drop` delete it from stack
+	**tips**
+	1. the stash cannot push untracked file, which means that you have to add it beforehand but not committed yet
+
+4. remote
+	1. `git remote -v` show all the remote
+	2. `git push origin master(dev)` the second is your local repo
+	3. git pull
+		`git pull --set-upstream-to=origin/<branch> <branch>`
+		pull is fetch plus merge
+
+5. git add
+	1. `git add --all <filepath>` can also add the removal
