@@ -36,6 +36,17 @@
     1. indexing:
         It can not use [], but use arr.get(int index)
     2. set(int index, E newValue)
+3. toArray()
+    1. al.toArray()
+        It returns object not any other data type
+        `Object[] objects = al.toArray();`
+        otherwise need to typecast
+        `Integer[] b = (Integer[]) al.toArray()`
+    2. al.toArray(tell the return type)
+        ```
+        Integer[] arr = new Integer[al.size()]; 
+        arr = al.toArray(arr); 
+        ```
 
 
 ## String
@@ -161,6 +172,26 @@
     10. remove(object key)
     11. Collection<V> values()
 
+## List<>
+
+1. access element by get() not [].
+2. **All the objects in the List is a reference to an specific object**
+    ```
+    ArrayList<HashSet<Integer>> a = new ArrayList<>(), b = new ArrayList<>();
+    HashSet<Integer> tmp = new HashSet<>();
+    a.add(tmp);
+    b.add(tmp);
+
+    tmp.add(1);
+    tmp.add(2);
+    for(HashSet<Integer> ele:b)
+        for(int i:ele){
+            System.out.println(i);
+        }
+    ```
+    The output of a and b will both be "1 2".
+
+
 ## Regular Expression
 
 1. First new Object Pattern, but it does not has constructor, need to use Pattern.compile()
@@ -249,21 +280,57 @@
 2. 
 
 
-## List<>
+## Copy
 
-1. access element by get() not [].
-2. **All the objects in the List is a reference to an specific object**
-    ```
-    ArrayList<HashSet<Integer>> a = new ArrayList<>(), b = new ArrayList<>();
-    HashSet<Integer> tmp = new HashSet<>();
-    a.add(tmp);
-    b.add(tmp);
+1. Shallow
+    1. traversal
+        ```
+        List<Person> destList=new ArrayList<Person>(srcList.size());  
+        for(Person p : srcList){  
+            destList.add(p);  
+        }  
+        ```
+    2. constructor
+        ```
+        List<Person> destList=new ArrayList<Person>(srcList);  
+        ```
+    3. addAll()
+        ```
+        List<Person> destList=new ArrayList<Person>();  
+        destList.addAll(srcList);  
+        ```
+    4. System.arraycopy()
+        ```
+        Person[] srcPersons=srcList.toArray(new Person[0]);  
+        Person[] destPersons=new Person[srcPersons.length];  
+        System.arraycopy(srcPersons, 0, destPersons, 0, srcPersons.length); 
 
-    tmp.add(1);
-    tmp.add(2);
-    for(HashSet<Integer> ele:b)
-        for(int i:ele){
-            System.out.println(i);
+        ```
+
+2. Deep
+    1. use the clone()
+        you can use the default clone() if it has. but need to typecast.
+        ```
+        ArrayList<Integer> a = new ArrayList<>();
+        ArrayList<Integer> cpy = (ArrayList<Integer>) a.clone();
+        ```
+        If the class does not have clone(), then implements Cloneable
+        ```
+        public class A implements Cloneable {   
+            public String name[];   
+
+            public A(){   
+                name=new String[2];   
+            }   
+
+            public Object clone() {   
+                A o = null;   
+                try {   
+                    o = (A) super.clone();   
+                } catch (CloneNotSupportedException e) {   
+                    e.printStackTrace();   
+                }   
+                return o;   
+            }   
         }
-    ```
-    The output of a and b will both be "1 2".
+        ```

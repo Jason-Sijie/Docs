@@ -7,26 +7,26 @@
 	```
 	class Solution {
 		public:
-	    vector<int> twoSum(vector<int>& nums, int target) {
-		int len = nums.size();
-		vector<int> idx(len);
-		iota(idx.begin(), idx.end(), 0);
-		sort(idx.begin(), idx.end(), [&nums](int i1, int i2){return nums[i1]<nums[i2];});
-		
-		int left = 0, right = len-1;
-		vector<int> res;
-		while(left < right){
-		    if(nums[idx[left]]+nums[idx[right]] < target)
-		        left++;
-		    else if(nums[idx[left]]+nums[idx[right]] > target)
-		        right--;
-		    else{
-		        res.push_back(idx[left]);
-		        res.push_back(idx[right]);
-		        break;
-		    }
-		}
-		return res;
+			vector<int> twoSum(vector<int>& nums, int target) {
+			int len = nums.size();
+			vector<int> idx(len);
+			iota(idx.begin(), idx.end(), 0);
+			sort(idx.begin(), idx.end(), [&nums](int i1, int i2){return nums[i1]<nums[i2];});
+			
+			int left = 0, right = len-1;
+			vector<int> res;
+			while(left < right){
+				if(nums[idx[left]]+nums[idx[right]] < target)
+					left++;
+				else if(nums[idx[left]]+nums[idx[right]] > target)
+					right--;
+				else{
+					res.push_back(idx[left]);
+					res.push_back(idx[right]);
+					break;
+				}
+			}
+			return res;
 	    }
 	};
 	```

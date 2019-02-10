@@ -8,8 +8,9 @@
 
 ## Set
 
+* iterator
+    it has all the kinds of iterators but not []
 * constructor
-    
     ```
     std::set<int> first = {1, 2, 3, 4};   
     int myints[]= {10,20,30,40,50};
@@ -17,19 +18,19 @@
     std::set<int> third (second);               
     std::set<int> fourth (second.begin(), second.end());  
     std::set<int,classcomp> fifth;    // class as Compare
-    ``` 
+    ```
 * modifiers
     * insert
     * erase
         * erase by iterator or element value
     * swap
-        ```
+    ```
         std::set<int> first (myints,myints+3);     // 10,12,75
         std::set<int> second (myints+3,myints+6);  // 20,25,32
 
         first.swap(second);
         // change the content of two sets with the same size
-        ```
+    ```
 
     * clear
     * emplace
@@ -42,7 +43,7 @@
 
 * Operations
     * find
-        * get iterator to element
+        * get iterator to element, or return set::end() iterator
     * count
         * count elements with a specific value
 
@@ -59,8 +60,10 @@
     * emplace
 * operations
     * find
-        * it will return iterator end() if not find.
+        * it will return iterator end() if not find. by key not value
     * count
+    * all the iterator
+        access by it->first and it->second
 
 
 ## Algorithm
@@ -117,3 +120,10 @@
 
 * The difference between Deque and Vector is that deque is stored in discreted memory units, different from Vector (which is continuous memory).
 * It is double linked container and can push\pop at the start, not only the end.
+
+## String and number
+
+* string to number
+    `auto num = std::sto*(str)`
+* number to string
+    `string res = std::to_string(num)`
