@@ -52,13 +52,20 @@ formdata用 request.POST.get()函数来获取
 
 ## Django
 
-### URL
-1. path() function can pass multiple parameter to views
-	```
-	path('download/<str:file_name>', views.download)
-	def download(request, file_name)
-	```
-
+1. URL
+	1. path() function can pass multiple parameter to views
+		```
+		path('download/<str:file_name>', views.download)
+		def download(request, file_name)
+		```
+	2. create namespace for app
+		1. add `app_name = 'your app name'` to the 'your app/urls.py'
+		2. add namespace in the main urls.py file
+			`path('app/', include('app.urls', namespace = 'app'))`
+		3. apply **{% url 'app: view name' \<parameters> %}**
+	3. POST form in HTML
+		1. add `{% csrf token %}` inside the post form
+		2. add `enctype = 'multipart/form-data'` in `<form enctype = 'multipart/form-data' method = 'post' action = ''>`
 
 
 ## Aliyun
