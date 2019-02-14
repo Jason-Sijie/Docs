@@ -49,34 +49,37 @@ request中的FILES来获取文件内容，必须要在html的form中加上这个
 上传的file用 request.FILES.get()函数来获取
 formdata用 request.POST.get()函数来获取
 
+3. Global variables or function
+	1. write in app.js and use `var app = getApp()` function to obtain the app object outside of app.js
+
+4. String, Json, Map
+	1. String to Json: `JSON.parse(string)`
+	2. Json to String: `JSON.stringify(json)`
+
 
 ## Django
 
-1. URL
-	1. path() function can pass multiple parameter to views
-		```
-		path('download/<str:file_name>', views.download)
-		def download(request, file_name)
-		```
-	2. create namespace for app
-		1. path('app/', include('app.urls', namespace = 'app'))
-			first `from django.urls import include, path`		
-			can create urls.py in app directory. and then in the main urls.py include('app.urls').
-			The truncated part of url will pass to the app's urls.py
-		2. add `app_name = 'your app name'` to the 'your app/urls.py'
-		3. path name
-			`path('polls/<int:id>/', views.func, name='id')`
-			The url is named as id, and we can use it in templates
-			`<a href="{% url 'app:id' question.id %}">`
-		4. apply **{% url 'app: view name' \<parameters> %}**
-		
-	3. POST form in HTML
-		1. add `{% csrf token %}` inside the post form
-		2. add `enctype = 'multipart/form-data'` in `<form enctype = 'multipart/form-data' method = 'post' action = ''>`
-
-
-
-
+### URL
+1. path() function can pass multiple parameter to views
+	```
+	path('download/<str:file_name>', views.download)
+	def download(request, file_name)
+	```
+2. create namespace for app
+	1. path('app/', include('app.urls', namespace = 'app'))
+		first `from django.urls import include, path`		
+		can create urls.py in app directory. and then in the main urls.py include('app.urls').
+		The truncated part of url will pass to the app's urls.py
+	2. add `app_name = 'your app name'` to the 'your app/urls.py'
+	3. path name
+		`path('polls/<int:id>/', views.func, name='id')`
+		The url is named as id, and we can use it in templates
+		`<a href="{% url 'app:id' question.id %}">`
+	4. apply **{% url 'app: view name' \<parameters> %}**
+	
+3. POST form in HTML
+	1. add `{% csrf token %}` inside the post form
+	2. add `enctype = 'multipart/form-data'` in `<form enctype = 'multipart/form-data' method = 'post' action = ''>`
 
 
 ### Models
@@ -101,8 +104,35 @@ formdata用 request.POST.get()函数来获取
 		from .models import Question
 		admin.site.register(ModelName)
 		```
-3. 
 
+### HttpResponse
+1. HttpResponse()
+	1. parameter `content_type = ''` to specify data type
+	2. Add header
+		```
+		response = HttpResponse()
+		response['file_name'] = "image.png"
+		return response 
+		```
+	3. Add body
+		`response.write('<p>text of testing.</p>')`
+	4. Get body
+		`response.content`
+
+2. JsonResponse()
+	1. default to send json data body
+	```
+	from django.http import JsonResponse
+	response = JsonResponse({'foo': 'bar'})
+	response.content
+	```
+
+
+
+### Apache WSGI
+1. application issues on mod_wsgi. An extension module like (cv2) not designed to work in sub interpreter. Add one line in **httpd.conf** to force it run in main interpreter.
+`WSGIApplicationGroup %{GLOBAL}`
+2. Reference **application issues on mod_wsgi**
 
 
 ### python encoding
@@ -116,10 +146,6 @@ formdata用 request.POST.get()函数来获取
 	set expandtab
 	```
 
-
-## Apache Install
-
-### Mod_wsgi
 
 
 ### Aliyun

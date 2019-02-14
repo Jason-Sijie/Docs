@@ -45,3 +45,8 @@
 
 5. git add
 	1. `git add --all <filepath>` can also add the removal
+
+6. git ignore
+	1. download the corresponding .gitignore file on github and place it at the root directory
+	2. remove the ignored files from tracked files
+		`git rm -r --cached <file/dir name>`
