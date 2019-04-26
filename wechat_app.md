@@ -11,7 +11,7 @@
 2. Grant sudo previlege
 	give the sudo command to new user, need to change the /etc/sudoers file
 	`chmod -v u+w /etc/sudoers`
- 	add one line at "username  ALL=(ALL)       ALL"
+	 	add one line at "username  ALL=(ALL)       ALL"
 	`chmod -v u-w /etc/sudoers`
 	then you can switch to the new user
 
@@ -83,27 +83,81 @@ formdata用 request.POST.get()函数来获取
 
 
 ### Models
+
+#### Basic
 1. create a new model in new app
-	1. create models in app/models.py
-		```
-		from django.db import models
-		class XXXX(model.Models):
-			name = models.datatype()
-		```
+  1. create models in app/models.py
 
-	2. create migration files of app models in your server
-		Add one line `app.apps.XXXXConfig` in mysite/settings.py INSTALLED_APPS.
-		And then run `python manage.py makemigrations app` to migrate the database
+    ```
+    from django.db import models
+    class XXXX(model.Models):
+    	name = models.datatype()
+    ```
 
-	3. migrate the app's DB to server DB
-		`python manage.py migrate`
-2. admin API
-	1. `python manage.py createsuperuser`
-	2. Add models in app/admin.py
-		```
-		from .models import Question
-		admin.site.register(ModelName)
-		```
+  2. create migration files of app models in your server
+
+    Add one line `app.apps.XXXXConfig` in mysite/settings.py INSTALLED_APPS.
+    And then run `python manage.py makemigrations app` to migrate the database
+
+  3. migrate the app's DB to server DB
+
+    `python manage.py migrate`
+
+  
+
+
+2. Model Attribute
+  3. choices
+   4. use tuples to determine the chosen value of a attribute.
+        ```python
+        	class Person(models.Model):
+        		SHIRT_SIZES = (
+        			('S', 'Small'),
+        			('M', 'Medium'),
+        			('L', 'Large'),
+        		)
+        		name = models.CharField(max_length=60)
+        		shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
+        ```
+   5. The value stored in DB is the first element in the tuple. But the value displayed is the second element.
+        ```shell
+  	>>> p = Person(name="Fred Flintstone", shirt_size="L")
+  	>>>   	>>> p.save()
+  	>>>   	>>>   	>>> p.shirt_size
+  	>>>   	>>>   	>>>   	'L'
+  	>>>   	>>>   	>>>
+  	>>>   	>>>   	>>>   	>>> p.get_shirt_size_display()
+  	>>>   	>>>   	>>>   	>>>   	'Large'
+  	>>>   	>>>   	>>>   	>>>   	```
+
+3. DateTimeField
+
+   1. DateTimeField: datetime.datetime; DateField: datetime.date; TimeField: datetime.time
+
+   2. 'auto_now'
+
+      1. every time Models.save() is called, the attribute is updated to the current timedate.
+      2. However, it can not be changed by update() anymore.
+
+   3. 'auto_now_add'
+
+      1. assign value when the object is created
+      2. However, it can not be changed by update() anymore.
+
+      
+
+4. admin API
+   1. `python manage.py createsuperuser`
+
+   2. Add models in app/admin.py
+     ```
+     from .models import Question
+     admin.site.register(ModelName)
+     ```
+
+#### Password Hash
+
+1. 
 
 ### HttpResponse
 1. HttpResponse()

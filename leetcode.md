@@ -4,7 +4,7 @@
 
 1. sort the vector nums by its index and start the two indexes at the 0 and n-1, iteratively getting closer to the right answer.
 2. there is the source code.
-	```
+	```C++
 	class Solution {
 		public:
 			vector<int> twoSum(vector<int>& nums, int target) {

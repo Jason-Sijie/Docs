@@ -47,3 +47,4 @@
 	}
 	```
 * 最后在setting的network中将proxy设置成手动，并且在socks一栏中输入127.0.0.1, port 8388（此处的设置为全局设置）
+* `sudo sslocal -c /etc/sslocal.json -d start`
