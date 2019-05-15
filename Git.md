@@ -50,3 +50,11 @@
 	1. download the corresponding .gitignore file on github and place it at the root directory
 	2. remove the ignored files from tracked files
 		`git rm -r --cached <file/dir name>`
+
+7. git push
+	1. Specify the branches both at local and remote repositories. `git push <remote host name> <local branch>:<remote branch>`
+	2. If we ignore the `<remote branch>`, then it would automatically be pushed to the branch that has the same name. (create a new branch if it cannot find such branch at remote host).
+
+8. git pull
+	1. `git pull <remote host> <remote branch>:<local branch>`. It first fetch the remote branch and then merge with the local branch
+	2. If we ignore the `<local branch>`, it would automatically fetch and merge with the current branch.

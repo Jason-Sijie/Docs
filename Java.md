@@ -23,11 +23,6 @@
     3. "%-15s" means start at the left side and fill the string to 15 digits
 
 
-## Static Initialize
-
-1. **public static variable** can be init directly or by using `static{}` and **private static function()**
-2. All the static variables and `static{}` runs by order.
-
 ## ArrayList
 
 1. constructor
@@ -172,7 +167,7 @@
     10. remove(object key)
     11. Collection<V> values()
 
-## List<>
+## List
 
 1. access element by get() not [].
 2. **All the objects in the List is a reference to an specific object**
@@ -191,93 +186,12 @@
     ```
     The output of a and b will both be "1 2".
 
-
-## Regular Expression
-
-1. First new Object Pattern, but it does not has constructor, need to use Pattern.compile()
-    `Pattern p = Pattern.compile(REGEX)`
-2. Object Matcher to complete the matches
-    `Matcher m = p.matcher(INPUT);`
-3. Matcher Methods
-    1. Indexing
-        1. boolean find()
-            if it finds the matching substring to REGEX.
-        2. boolean find(int start)
-            start at the given offset to find the matching substring
-        3. boolean matches()
-            if the whole string matches REGEX
-        4. int start(), int end()
-            return the starting(ending) index of last finding result
-    2. Replacing
-        1. **Matcher appendReplacement(StringBuffer sb, String replacement)**
-            append the replaced substring starting from the last finding result to sb(StringBuffer).
-        2. StringBuffer appendTail(StringBuffer sb)
-            append the content starting from the last finding result to sb(StringBuffer).
-        3. replaceAll(String replace)
-        4. replaceFirst(String replace)
-    3. Region
-        1. region(int start, int end)
-            set the limits of this matcher's region
-        2. int regionStart(), int regionEnd()
-4. Symbols
-    1. \\1(\\2): means the content of group #1 or #2.
-    2. [0-9] == \\d
-    3. [^abc]: all the characters except a, b, and c.
-
-
-## Inherit
-
-1. SubClass constructor
-    1. It will automatically call the default constructor of superClass, if SubClass does not explicitly call it.
-2. interface
-    1. If **implements** interface, then it can **implements** multiple interfaces at the same time. 
-    2. But **extends** classes can only extends 1 class at one time.
-3. final
-    1. once the class/method/variable is declared as **final**, it can not been inheritted, overrided, and changed.
-        ```
-        final class 类名 {//类体}
-        修饰符(public/private/default/protected) final 返回值类型 方法名(){//方法体}
-        ```
-
-
-## Sort
-
-1. Arrays Sorting (int[] arr)
-    1. use java.util.Arrays object's function "sort"
-        ```
-        Arrays.sort(arr);
-        Arrays.sort(arr, int start, int end);
-        ```
-    2. implement own **comparator**
-        ```
-        Comparator cmp = new MyComparator();
-        Arrays.sort(arr, cmp)
-
-        class MyComparator implements Comparator<E>{
-            @Override
-            public int compare(E o1, E o2){
-                if(o1 < o2){
-                    return 1; 
-                }
-                else if(o1 > o2){
-                    return -1;  // must be opposite number
-                }
-                else{
-                    return 0;
-                }
-            }
-        }
-        ```
-
-2. Objects (like ArrayList and Vector) Sorting
-    1. use java.util.Collections object's function "sort"
-    2. it is the same with Arrays's function
-
 ## Arrays
 
 1. Arrays.copyOfRange(Object[] src, int from, int to)
     obtain the sub array from source
-2. 
+
+2. Arrays.sort(array, comparator)
 
 
 ## Copy
@@ -334,3 +248,315 @@
             }   
         }
         ```
+
+## Regular Expression
+
+1. First new Object Pattern, but it does not has constructor, need to use Pattern.compile()
+    `Pattern p = Pattern.compile(REGEX)`
+2. Object Matcher to complete the matches
+    `Matcher m = p.matcher(INPUT);`
+3. Matcher Methods
+    1. Indexing
+        1. boolean find()
+            if it finds the matching substring to REGEX.
+        2. boolean find(int start)
+            start at the given offset to find the matching substring
+        3. boolean matches()
+            if the whole string matches REGEX
+        4. int start(), int end()
+            return the starting(ending) index of last finding result
+    2. Replacing
+        1. **Matcher appendReplacement(StringBuffer sb, String replacement)**
+            append the replaced substring starting from the last finding result to sb(StringBuffer).
+        2. StringBuffer appendTail(StringBuffer sb)
+            append the content starting from the last finding result to sb(StringBuffer).
+        3. replaceAll(String replace)
+        4. replaceFirst(String replace)
+    3. Region
+        1. region(int start, int end)
+            set the limits of this matcher's region
+        2. int regionStart(), int regionEnd()
+4. Symbols
+    1. \\1(\\2): means the content of group #1 or #2.
+    2. [0-9] == \\d
+    3. [^abc]: all the characters except a, b, and c.
+
+
+
+## Algorithm
+
+1. Arrays Sorting (int[] arr)
+    1. use java.util.Arrays object's function "sort"
+        ```
+        Arrays.sort(arr);
+        Arrays.sort(arr, int start, int end);
+        ```
+    2. implement own **comparator**
+        ```
+        Comparator cmp = new MyComparator();
+        Arrays.sort(arr, cmp)
+
+        class MyComparator implements Comparator<E>{
+            @Override
+            public int compare(E o1, E o2){
+                if(o1 < o2){
+                    return 1; 
+                }
+                else if(o1 > o2){
+                    return -1;  // must be opposite number
+                }
+                else{
+                    return 0;
+                }
+            }
+        }
+        ```
+
+2. Objects (like ArrayList and Vector) Sorting
+    1. use java.util.Collections object's function "sort"
+    2. it is the same with Arrays's function
+
+
+
+
+
+## OOP
+
+### Multiple file compilation
+1. Java has build-in 'make' function. It would automatically search the 'Employee.java' or 'Employee.class' file for 'Employee class'.
+
+### class design
+1. privilege
+    1. The method of one 'class' can access and motify all the private data of any objects belonging to that 'class'
+    ```Java
+    public class Employee{
+        private String name;
+        public void EditOtherName(Employee other, String newNameVal){
+            other.name = newNameVal;
+        }
+    }
+    ```
+
+2. We should use **unchangable variables**. (like LocalDate) They are safer in multithreading.
+
+### initialize block
+1. The block will be called before any constructor
+2. static initialize block, specially for static variables.
+```Java
+public static int nextId;
+static{
+    nextId = 1;
+}
+```
+
+### Package
+1. At the beginning of the java file, state `package ...;`
+2. Javadoc can extract comment from java file.
+    1. change to the source file directory
+    2. `javadoc -d docDirectory nameOfPackage1 nameOfPackage2 ...`
+
+### Inherit
+1. **Object Class**
+    1. equals(): first check super class equals.
+        1. `obj instanceof class` returns boolean value whether obj is the instance of that class or its parent classes.
+
+        2. We can use `Objects.equals(obj1, obj2)` to compare two objects. It **actually calls** `obj1.equals(obj2)`
+
+        3. Sample Code
+        ```Java
+        @Override
+        public boolean equals(Object obj) {
+            // first check super class
+            if(!super.equals(obj)) return false;
+
+            if(obj == null) return false;
+
+            if(this == obj) return true;
+
+            if(this.getClass() != obj.getClass()){
+                return false;
+            }
+
+            Employee other = (Employee) obj;
+            return this.name.equals(other.name);
+        }
+        ```
+    
+    2. hashCode()
+        1. `Objects.hash(obj1, obj2, ..., objn)` It returns one hash code made by all the given objects
+        2. `Arrays.hashCode()` It returns hash code for all the primative arrays.
+
+    3. toString()
+        1. JVM would automatically complie `String a = "hello" + obj` to `String a = "hello" + obj.toString()`
+        2. Print whole array we can `Arrays.toString(arrayObject)`
+            1. Initialize array `data = new int[] {10,20,30,40,50,60,71,80,90,91 };`
+
+    4. getClass(): get the class info of this object. It returns a `class` object.
+        1. class object has `getName() and getSuperClass()` two main methods
+
+2. Wrapper
+    1. Change primitive to object. `Integer Double Boolean ... `
+    2. The wrapping objects are unchangable, all their variables are **final**
+    
+    3. parseInt(String s, int radix): parse string to number
+
+3. Changable number of parameters
+    1. `printf(String fmt, Object... args)` We can pass in parameter by `printf("%d, %s", new Object[] { Integer(n), "Jason" })`
+    2. `max(double... values)`, in the function we can regard values as an array. `for(double v : values) print(v)`
+
+4. Enum
+    1. all the enum type is the derived class of `Enum`
+    ```Java
+    enum Size{
+        SMALL("S"), MEDIUM("M"), LARGE("L"), EXTRA_LARGE("XL")
+
+        private Size(String abbr){
+            this.abbr = abbr;
+        }
+        public String getAbbr() {return this.abbr;}
+
+        private String abbr;
+    }
+    ```
+
+    2. The arguments inside the brackets are the corresponding parameters while calling the constructor.
+
+5. Reflect
+    1. **Field, Method, and Constructor** classes get the information of a class.
+    ```Java
+    java.lang.Class
+    Field[] getDeclaredFields()
+    Method[] getDeclaredMethods()
+    Constructor[] getDeclaredConstructors()
+    ```
+
+    2. **Modifier** class has methods to analyze the value returned by the **Field, Method, and Constructor**
+
+    3. Copy an array compatable with any component type. we can apply `Arrays.newInstance(component type, length)`.
+    ```Java
+    Class componentType = cl.getComponentType();
+    Object newArray = Array.newInstance(componentType, newLength);
+    return newArray;
+    ```
+
+    4. We can call a method by using `Method.invoke(caller obj, method parameters);`. If the method is static, then invoke()'s first parameter is **null**.
+    ```Java
+    Method m1 = Employee.class.getDeclaredMethod("GetName");
+    // The return value is Object type.
+    String res = (String) m1.invoke(e1);
+    System.out.println(res);
+    ```
+
+### interface
+1. default method. It is convenient to update the interface without changing all the classes already implementing the interface.
+```Java
+default int compareTo(T other){return 0;}
+```
+
+2. If a class implements two interface, which have same methods, then Java would give an error and ask the programmer to solve it. **Solution** override that method in the class.
+```Java
+class Student implements Person, Named{
+    public String getName() {return Person.super.getName();}
+
+}
+```
+
+3. If method conflict happens between extending a class and implementing an interface, Java would choose the method from the **extended class**.
+
+4. ActionListener
+```Java
+public class ActionListenerTest implements ActionListener {
+    @Override
+    public void actionPerformed(ActionEvent event){
+        System.out.println("At the tone, the time is " + new Date());
+        Toolkit.getDefaultToolkit().beep();
+    }
+}
+
+void main(){
+    ActionListener listener = new ActionListenerTest();
+    // the actionPerformed method would be called every 10 seconds
+    Timer t = new Timer(10000, listener);
+    t.start();
+
+    JOptionPane.showMessageDialog(null, "Quit program");
+    System.exit(0);
+}
+```
+
+5. clone
+    1. The shallow clone() provided by *Object* gives a new object but sharing the same fields with the original object. 
+    ```Java
+    Employee e1 = new Employee("Jason");
+    Employee e2 = e1.clone();
+    // e1 != e2
+    // e1.Date (object) == e2.Date, same field.
+    // if you change e1's date, then e2's date is also changed
+    ```
+
+    2. *Object*'s clone() is protected. Implement the **Cloneable** interface and update the method to **public**
+    ```Java
+    public class Employee implements Cloneable{
+        @Override
+        public Object clone() throws CloneNotSupportedException {
+            return super.clone();
+        }
+    }`
+    ```
+
+
+## Exception
+1. 
+
+## ClassPath
+1. If the source code calls a class label which has multiple resolutions found by the JVM according to its classPath, then the JVM would report error.
+    1. Therefore, the searching order is not important.
+2. Set ClassPath
+    1. use `-cp or -classpath` options, UNIX uses `:` and Windows uses `;` to separate the paths
+    2. Example: `java -cp c:\classdir;.;c:\archives\archive.jar`
+
+
+## JavaDoc
+
+1. File statement
+    ```Java
+    /**
+    * @author      Firstname Lastname <address @ example.com>
+    * @version     1.6                 (current version number of program)
+    * @since       1.2          (the version of the package this class was first added to)
+    */
+    public class Test {
+        // class body
+    }
+    ```
+
+2. Method Comment
+    ```Java
+    /**
+    * Short one line description.                           (1)
+    * <p>
+    * Longer description. If there were any, it would be    (2)
+    * here.
+    * </p>
+    * And even more explanations to follow in consecutive
+    * paragraphs separated by HTML paragraph breaks.
+    *
+    * @param  variable Description text text text.          (3)
+    * @return Description text text text.
+    */
+    public int methodName (...) {
+        // method body with a return statement
+    }
+    ```
+
+3. Define one variable at one line.
+    ```Java
+    /**
+    * Description of the variable here.
+    */
+    private int debug = 0;
+    ```
+
+4. Command
+    1. change to the source file directory
+    2. `javadoc -d docDirectory nameOfPackage1 nameOfPackage2 ...`
