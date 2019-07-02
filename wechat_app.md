@@ -101,10 +101,9 @@ formdata用 request.POST.get()函数来获取
 
   3. migrate the app's DB to server DB
 
-    `python manage.py migrate`
+    python manage.py migrate
 
   
-
 
 2. Model Attribute
   3. choices
@@ -120,16 +119,6 @@ formdata用 request.POST.get()函数来获取
         		shirt_size = models.CharField(max_length=1, choices=SHIRT_SIZES)
         ```
    5. The value stored in DB is the first element in the tuple. But the value displayed is the second element.
-        ```shell
-  	>>> p = Person(name="Fred Flintstone", shirt_size="L")
-  	>>>   	>>> p.save()
-  	>>>   	>>>   	>>> p.shirt_size
-  	>>>   	>>>   	>>>   	'L'
-  	>>>   	>>>   	>>>
-  	>>>   	>>>   	>>>   	>>> p.get_shirt_size_display()
-  	>>>   	>>>   	>>>   	>>>   	'Large'
-  	>>>   	>>>   	>>>   	>>>   	```
-
 3. DateTimeField
 
    1. DateTimeField: datetime.datetime; DateField: datetime.date; TimeField: datetime.time
@@ -155,9 +144,6 @@ formdata用 request.POST.get()函数来获取
      admin.site.register(ModelName)
      ```
 
-#### Password Hash
-
-1. 
 
 ### HttpResponse
 1. HttpResponse()
@@ -199,7 +185,6 @@ formdata用 request.POST.get()函数来获取
 	set tabstop=4
 	set expandtab
 	```
-
 
 
 ### Aliyun

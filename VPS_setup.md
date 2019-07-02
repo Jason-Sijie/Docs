@@ -1,4 +1,4 @@
-#在阿里云的ecs（centos）上搭建ssserver
+## 在阿里云的ecs（centos）上搭建ssserver
 
 1. 用pip2.7安装shadowsocks
 `pip2.7 install shadowsocks`
@@ -7,7 +7,7 @@
 2. 配置文件
 `vim /etc/shadowsocks.json`
 配置文件的内容如下
-```
+```javascript
 {
 	"server":"0.0.0.0",
 	"server_port":8388,
