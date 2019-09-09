@@ -58,3 +58,14 @@
 8. git pull
 	1. `git pull <remote host> <remote branch>:<local branch>`. It first fetch the remote branch and then merge with the local branch
 	2. If we ignore the `<local branch>`, it would automatically fetch and merge with the current branch.
+
+9. git merge
+	1. checkout to the destination branch
+	2. `git merge <branch>` : `git merge origin/fast-dev`
+
+10. git log
+	1. pretty nice log: `git log --graph --decorate --pretty=oneline --abbrev-commit --all`
+
+11. solve conflict
+	1. first `git rebase -i <commit>` to the first diverged node. This squashes all the commits into one
+	2. then `git merge <remote branch>` and solve the conflict
