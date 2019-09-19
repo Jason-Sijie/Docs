@@ -54,5 +54,21 @@
 ## apt
 
 1. install path: `/usr/share`
-
     1. java home is at `/usr/lib/jvm`
+    2. change default java
+
+## authority
+
+1. chmod
+    1. u means owner, g means group member, o means others, a means all. 
+    2. -R perform recursively to all the sub-directories
+    ```sh
+    chmod u+rwx,g+rw,o-w file.txt
+    chmod a+r file.txt
+    chmod -R 777 file
+    ```
+
+## CPU, Memory, Storage
+
+1. `df`: check the storage usage
+2. `htop`: check CPU and Memory usage
