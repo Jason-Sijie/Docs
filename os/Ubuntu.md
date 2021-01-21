@@ -56,6 +56,8 @@
 1. install path: `/usr/share`
     1. java home is at `/usr/lib/jvm`
     2. change default java
+        1. ` sudo update-alternatives --config java`
+        2. ` sudo update-alternatives --config javac`
 
 ## authority
 

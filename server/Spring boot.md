@@ -46,7 +46,8 @@
     1. It's the combination of @Configuration @EnableAutoConfiguration @ComponentScan
     2. you use Spring’s support for embedding the Tomcat servlet container as the HTTP runtime, instead of deploying to an external instance.
 
-2. 
+2. @ComponentScan
+    - We can set the root package for component scan: `@ComponentScan(basePackages = <root package>)`
 
 #### Scheduled Task
 
@@ -114,3 +115,50 @@ spring.datasource.url=jdbc:mysql://<your docker mysql ip addr>:3306/db_example
 spring.datasource.username=springuser
 spring.datasource.password=ThePassword
 ```
+
+
+### Test
+
+#### Junit
+
+- Annotation
+    - @Test : add before each test case
+    - @RunWith(SpringRunner.class) : add before the test class
+
+- Logger
+    - import `org.slf4j.Logger` and `org.slf4j.LoggerFactory`
+    - `static final Logger logger = LoggerFactory.getLogger`
+    - the test log file is in the build/test-results
+
+#### Http Request
+
+- Real start the server
+    - Port
+        - `@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)` 
+            - start the test with random port, avoid conflicts
+        - `@LocalServerPort private int port`
+    - TestRestTemplate
+        - can consturct with credentials `new TestRestTemplate("user", "password")`
+
+         
+- Mock MVC
+    - @AutoConfigureMockMvc: add before test class, it would load the full application context but without server.
+    - `@Autowired private MockMvc`
+
+- @WebMvcTest
+    - @WebMvcTest: add before test class, it would only load the web layer.
+    - `@WebMvcTest(xxx.class)`: only load the specific controller
+
+
+## Security
+
+## Web Socket
+
+### STOMP (Streming Text Oriented Messaging Protocol)
+
+- Message handling controller
+    - `@MessageMapping("/hello")`: process messages sent to "/hello"
+    - `@SendTo("url")`: broadcast return value to all subscribers to that url
+
+- Configuration class
+    - TODO: what's the exact workflow of the `MessageBroker`?
